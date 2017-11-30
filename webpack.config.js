@@ -1,9 +1,11 @@
+const path = require('path');
+
 module.exports = {
   devtool: 'eval-source-map',
-  entry:  __dirname + "/src/app/main.js",
+  entry: './src/app/main.js',
   output: {
-    path: __dirname + "/public",
-    filename: "bundle.js"
+    path: path.resolve('public'),
+    filename: 'bundle.js'
   },
   module: {
     loaders: [
@@ -18,19 +20,19 @@ module.exports = {
         exclude: /(node_modules)/,
         loader: 'babel-loader',
         query: {
-          presets: ['es2015','react']
+          presets: ['es2015', 'react']
         }
       },
       {
-      test: /\.css$/,
-      loader: 'style-loader!css-loader'
-    }
+        test: /\.css$/,
+        loader: 'style-loader!css-loader'
+      }
     ]
   },
   devServer: {
-     contentBase: "./public",
-     historyApiFallback: true,
-     inline: true,
-     port: '3000'
-   }
-}
+    contentBase: './public',
+    historyApiFallback: true,
+    inline: true,
+    port: '3000'
+  }
+};
