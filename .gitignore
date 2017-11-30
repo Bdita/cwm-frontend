@@ -8,3 +8,5 @@
 
 # production
 /public/bundle.js
+
+npm-debug.log

@@ -1,0 +1,43 @@
+{
+  "extends": "airbnb",
+  "env": {
+    "browser": true
+  },
+  "parser": "babel-eslint",
+  "plugins": [
+    "react",
+    "css-modules",
+    "import",
+    "jsx-a11y"
+  ],
+  "rules": {
+    "import/no-unresolved": 0,
+    "import/prefer-default-export": 0,
+    "import/no-extraneous-dependencies": 0,
+    "import/no-webpack-loader-syntax": 0,
+    "import/extensions": 0,
+    "import/first": 0,
+    "comma-dangle": 0,
+    "new-cap": 0,
+    "object-shorthand": 0,
+    "max-len": 0,
+    "no-underscore-dangle": ["error", { "allow": ["__all__","__DEV__","_value"] }],
+    "no-bitwise": 0,
+    "react/jsx-boolean-value": 0,
+    "react/jsx-filename-extension": 0,
+    "react/forbid-prop-types": [1, { "forbid": ["any"] }],
+    "react/jsx-max-props-per-line": [1, { "maximum": 1, "when": "always" }],
+    "react/require-default-props": 0,
+    "react/no-danger": 0,
+    "react/no-array-index-key": 0,
+    "object-property-newline": ["error", { "allowMultiplePropertiesPerLine": false }],
+    "jsx-a11y/label-has-for": 0,
+    "class-methods-use-this": 0,
+    "no-restricted-properties": [0, {
+      "object": "Math",
+      "property": "pow"
+    }],
+    "global-require": 0,
+    "react/prefer-stateless-function": 0  // remove this once updating eslint
+  }
+}
