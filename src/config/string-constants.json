@@ -1,6 +1,8 @@
 {
   "title": "Coffee With Me",
   "introduction": {
-    "description": "Let's connect."
-  }
+    "slogan": "Let's connect.",
+    "description": " bla bla bla bla"
+  },
+  "book": "Book"
 }
