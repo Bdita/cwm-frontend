@@ -1,10 +1,12 @@
 const path = require('path');
+const webpack = require('webpack');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   devtool: 'eval-source-map',
-  entry: './src/app/main.js',
+  entry: './src/main.js',
   output: {
-    path: path.resolve('public'),
+    path: path.resolve('build'),
     filename: 'bundle.js'
   },
   module: {
@@ -24,15 +26,31 @@ module.exports = {
         }
       },
       {
+        test: /\.json$/,
+        exclude: /(node_modules)/,
+        loader: 'json-loader',
+      },
+      {
         test: /\.css$/,
-        loader: 'style-loader!css-loader'
+        loader: 'style-loader!css-loader?modules'
+      },
+      {
+        test: /\.(png|svg|jpg|gif)$/,
+        exclude: /(node_modules)/,
+        loader: 'file-loader'
       }
     ]
   },
+  plugins: [
+    new HtmlWebpackPlugin({
+      template: './src/index.tmpl.html'
+    }),
+    new webpack.HotModuleReplacementPlugin()
+  ],
   devServer: {
-    contentBase: './public',
     historyApiFallback: true,
     inline: true,
-    port: '3000'
+    port: '3000',
+    hot: true
   }
 };
