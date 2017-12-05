@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { Component } from 'react';
 import constants from '../config/string-constants';
 import LogoImage from '../static/icons/coffee.png';
 
-class Logo extends React.Component {
+class Logo extends Component {
   render() {
     return (
       <img

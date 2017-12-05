@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PersonalDetailDrawer from './PersonalDetailDrawer';
 import AppBar from 'material-ui/AppBar';
 import Drawer from 'material-ui/Drawer';
 import constants from '../config/string-constants.json';
@@ -7,7 +8,6 @@ import IconButton from 'material-ui/IconButton';
 import FlatButton from 'material-ui/FlatButton';
 import BookingIcon from 'material-ui/svg-icons/action/today';
 import ArrowDownIcon from 'material-ui/svg-icons/navigation/arrow-drop-down';
-import CloseIcon from 'material-ui/svg-icons/navigation/close';
 
 // import Logo from './Logo';
 
@@ -84,11 +84,12 @@ class Header extends Component {
         <Drawer
           open={this.state.open}
           width="25%"
+          containerStyle={{
+            marginTop: '5%',
+            boxShadow: 'none'
+          }}
         >
-          <IconButton onClick={this.handleFaceButtonClick}>
-            <CloseIcon />
-          </IconButton>
-          <p> Test </p>
+          <PersonalDetailDrawer />
         </Drawer>
       </div>
     );
