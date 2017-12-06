@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
+import Header from '../ui/Header';
 import Home from '../home/Home';
+import BookingForm from '../booking/bookingForm';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import * as colors from 'material-ui/styles/colors';
@@ -40,8 +42,10 @@ class Index extends Component {
       <MuiThemeProvider muiTheme={muiTheme}>
         <Router>
           <div>
+            <Header />
             <Switch>
               <Route exact path="/" component={Home} />
+              <Route path="/booking" component={BookingForm} />
             </Switch>
           </div>
         </Router>

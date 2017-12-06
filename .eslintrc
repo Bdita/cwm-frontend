@@ -28,6 +28,7 @@
     "react/forbid-prop-types": [1, { "forbid": ["any"] }],
     "react/jsx-max-props-per-line": [1, { "maximum": 3, "when": "always" }],
     "react/jsx-first-prop-new-line": 0,
+    "jsx-a11y/anchor-is-valid": 0,
     "react/require-default-props": 0,
     "react/no-danger": 0,
     "react/no-array-index-key": 0,

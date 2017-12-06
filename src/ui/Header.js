@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import PersonalDetailDrawer from './PersonalDetailDrawer';
 import AppBar from 'material-ui/AppBar';
 import Drawer from 'material-ui/Drawer';
@@ -48,19 +49,21 @@ class Header extends Component {
               marginTop: 0
             }}
             >
-              <FlatButton
-                label={constants.book}
-                labelPosition="before"
-                primary={true}
-                icon={<BookingIcon color="#ED5F59" />}
-                style={{
-                  height: 40,
-                  marginTop: 4,
-                }}
-                labelStyle={{
-                  color: '#767676',
-                }}
-              />
+              <Link to="/booking">
+                <FlatButton
+                  label={constants.book}
+                  labelPosition="before"
+                  primary={true}
+                  icon={<BookingIcon color="#ED5F59" />}
+                  style={{
+                    height: 40,
+                    marginTop: 4,
+                  }}
+                  labelStyle={{
+                    color: '#767676'
+                  }}
+                />
+              </Link>
             </div>
           }
           titleStyle={{
