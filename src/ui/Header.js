@@ -9,8 +9,6 @@ import FlatButton from 'material-ui/FlatButton';
 import BookingIcon from 'material-ui/svg-icons/action/today';
 import ArrowDownIcon from 'material-ui/svg-icons/navigation/arrow-drop-down';
 
-// import Logo from './Logo';
-
 class Header extends Component {
   constructor(props) {
     super(props);
@@ -70,7 +68,7 @@ class Header extends Component {
             fontFamily: 'Lora',
             fontWeight: 'bold',
             fontStyle: 'italic',
-            textAlign: 'center'
+            textAlign: 'center',
           }}
           style={{
             marginBottom: '15px',
@@ -85,7 +83,7 @@ class Header extends Component {
           open={this.state.open}
           width="25%"
           containerStyle={{
-            marginTop: '5%',
+            marginTop: '6%',
             boxShadow: 'none'
           }}
         >

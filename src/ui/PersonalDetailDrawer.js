@@ -13,17 +13,18 @@ const style = {
   medium: {
     height: 200,
     width: 200,
-    margin: 20,
+    margin: 15,
     textAlign: 'center',
     display: 'inline-block',
     backgroundColor: '#ED5F59'
   },
   large: {
-    height: 300,
-    width: 300,
-    margin: 20,
+    height: 295,
+    width: 295,
+    margin: 15,
     textAlign: 'center',
     display: 'inline-block',
+    backgroundColor: '#6f69ee'
   }
 };
 
@@ -45,29 +46,40 @@ class PersonalDetailDrawer extends Component {
               borderRadius: '50px',
             }}
           />
-          <div style={{
-            fontSize: '13px',
-            }}
-          >
-            {constants.detail.name}
-          </div>
         </Paper>
         <Paper
           style={style.medium}
-          zDepth={5}
+          zDepth={3}
           circle={true}
         >
           <div style={{
-            fontSize: '14px',
-            marginTop: '45%',
+            fontSize: '13px',
+            marginTop: '35%',
+            fontFamily: 'Roboto Mono',
+            color: 'white'
             }}
           >
-            {constants.detail.about}
+            <div style={{
+              textDecoration: 'underline',
+              fontWeight: '700',
+              fontFamily: 'Roboto Mono',
+            }}
+            >
+              {constants.detail.name}
+            </div>
+            <div style={{
+              marginTop: '2%',
+              fontWeight: '700',
+              fontStyle: 'italic'
+            }}
+            >
+              {constants.detail.about}
+            </div>
           </div>
         </Paper>
         <Paper
           style={style.large}
-          zDepth={5}
+          zDepth={3}
           circle={true}
         />
       </div>
