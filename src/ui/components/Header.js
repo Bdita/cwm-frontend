@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import PersonalDetailDrawer from './PersonalDetailDrawer';
 import AppBar from 'material-ui/AppBar';
 import Drawer from 'material-ui/Drawer';
-import constants from '../config/string-constants.json';
+import constants from '../../config/string-constants.json';
 import FaceIcon from 'material-ui/svg-icons/action/face';
 import IconButton from 'material-ui/IconButton';
 import FlatButton from 'material-ui/FlatButton';

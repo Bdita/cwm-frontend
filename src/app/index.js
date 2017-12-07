@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Header from '../ui/Header';
+import Header from '../ui/components/Header';
 import Home from '../home/Home';
 import BookingForm from '../booking/bookingForm';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';

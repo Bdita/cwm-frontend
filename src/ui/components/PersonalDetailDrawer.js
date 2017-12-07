@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Paper from 'material-ui/Paper';
-import constants from '../config/string-constants';
+import constants from '../../config/string-constants';
 
 const style = {
   small: {

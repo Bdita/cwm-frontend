@@ -4,10 +4,12 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   devtool: 'eval-source-map',
-  entry: './src/main.js',
+  entry: [
+    'react-hot-loader/patch',
+    path.join(__dirname, 'src/main.js')],
   output: {
     path: path.resolve('build'),
-    filename: 'bundle.js'
+    filename: 'bundle.js',
   },
   module: {
     loaders: [
@@ -43,7 +45,12 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: './src/index.tmpl.html'
+      template: './src/index.tmpl.html',
+      inject: 'body',
+      filename: 'index.html'
+    }),
+    new webpack.DefinePlugin({
+      'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV || 'development')
     }),
     new webpack.HotModuleReplacementPlugin()
   ],

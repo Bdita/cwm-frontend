@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import constants from '../config/string-constants';
+import constants from '../../config/string-constants';
 import Paper from 'material-ui/Paper';
 
 const style = {
