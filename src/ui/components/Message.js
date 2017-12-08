@@ -21,6 +21,8 @@ const style = {
   },
 };
 
+// TO DO: images inside the papers, links for social media
+// TO DO: refactor social media paper elements into footer component
 class Message extends Component {
   render() {
     return (
