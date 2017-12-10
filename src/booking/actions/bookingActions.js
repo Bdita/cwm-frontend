@@ -28,14 +28,33 @@ export function makeBookingFailure(error) {
     error: error
   };
 }
+export function extractDate(date) {
+  const dateString = date.substring(1, 11);
+  return dateString;
+}
 
 export function makeBooking(formProps) {
   return (dispatch) => {
-    dispatch(makeBookingRequest(formProps));
+    const date = JSON.stringify(formProps.date);
+    const newDate = extractDate(date);
+    console.log(newDate);
+    const updatedFormValues = {
+      name: formProps.name,
+      email: formProps.email,
+      description: formProps.description,
+      phone: formProps.phone,
+      company_name: formProps.company_name,
+      date: newDate,
+      time_slot: formProps.time_slot
+    };
+    dispatch(makeBookingRequest(updatedFormValues));
     const bookingEndpoint = `${config.api.endpoint}/api/bookings/`;
     return fetch(bookingEndpoint, {
       method: 'POST',
-      body: JSON.stringify(formProps)
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(updatedFormValues)
     })
       .then((response) => {
         if (response.status === 400) {

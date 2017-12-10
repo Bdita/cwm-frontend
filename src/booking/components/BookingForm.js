@@ -15,6 +15,9 @@ const validate = values => {
   if (values.email && !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
     errors.email = 'Invalid email address';
   }
+  if (values.phone && !/^(?:\+?61|0)4 ?(?:(?:[01] ?[0-9]|2 ?[0-57-9]|3 ?[1-9]|4 ?[7-9]|5 ?[018]) ?[0-9]|3 ?0 ?[0-5])(?: ?[0-9]){5}$/i.test(values.phone)) {
+    errors.phone = 'Invalid Mobile Number';
+  }
   return errors;
 };
 
@@ -117,6 +120,7 @@ let BookingReduxForm = (props) => {
 
 BookingReduxForm.propTypes = {
   handleSubmit: PropTypes.func.isRequired,
+  // fields: PropTypes.object
 };
 renderTextField.propTypes = {
   label: PropTypes.string.isRequired,
