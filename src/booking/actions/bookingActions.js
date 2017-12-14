@@ -1,6 +1,7 @@
 import 'whatwg-fetch';
 // in production?
 import config from '../../config/development';
+import { extractDate } from '../../utils/helpers';
 
 // action types
 export const MAKE_BOOKING_REQUEST = 'MAKE_BOOKING_REQUEST';
@@ -28,16 +29,10 @@ export function makeBookingFailure(error) {
     error: error
   };
 }
-export function extractDate(date) {
-  const dateString = date.substring(1, 11);
-  return dateString;
-}
 
 export function makeBooking(formProps) {
   return (dispatch) => {
-    const date = JSON.stringify(formProps.date);
-    const newDate = extractDate(date);
-    console.log(newDate);
+    const newDate = extractDate(formProps.date);
     const updatedFormValues = {
       name: formProps.name,
       email: formProps.email,

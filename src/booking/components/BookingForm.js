@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Field, reduxForm } from 'redux-form';
-import { TextField, DatePicker } from 'material-ui';
+import { TextField, DatePicker, SelectField, MenuItem } from 'material-ui';
 import RaisedButton from 'material-ui/RaisedButton';
 
 const validate = values => {
@@ -19,6 +19,14 @@ const validate = values => {
     errors.phone = 'Invalid Mobile Number';
   }
   return errors;
+};
+
+const rendertimeSlotItems = values => {
+  return values.map((value, i) => {
+    return (
+      <MenuItem key={i} value={value.time_slot} primaryText={value.time_slot} />
+    );
+  });
 };
 
 const renderTextField = ({
@@ -40,19 +48,40 @@ const renderDateField = ({
   input,
   label,
   meta: { touched, error },
-  custom
+  getDate,
+  custom,
 }) => (
   <DatePicker
     hintText={label}
     floatingLabelText={label}
     errorText={touched && error}
-    onChange={(event, date) => input.onChange(date)}
+    onChange={(event, date) => {
+      input.onChange(date);
+      getDate(date);
+    }}
+    {...custom}
+  />
+);
+
+const renderDropdownList = ({
+  input,
+  label,
+  meta: { touched, error },
+  children,
+  custom
+}) => (
+  <SelectField
+    floatingLabelText={label}
+    errorText={touched && error}
+    {...input}
+    onChange={(event, index, value) => input.onChange(value)}
+    children={children}
     {...custom}
   />
 );
 
 let BookingReduxForm = (props) => {
-  const { handleSubmit } = props;
+  const { handleSubmit, timeSlots } = props;
   return (
     <div style={{
       width: '40%',
@@ -101,12 +130,15 @@ let BookingReduxForm = (props) => {
             name="date"
             component={renderDateField}
             label="Select Date"
+            getDate={props.getDate}
           />
           <Field
             name="time_slot"
-            component={renderTextField}
+            component={renderDropdownList}
             label="time slot"
-          />
+          >
+            {rendertimeSlotItems(timeSlots)}
+          </Field>
           <RaisedButton
             label="Submit"
             primary={true}
@@ -120,7 +152,8 @@ let BookingReduxForm = (props) => {
 
 BookingReduxForm.propTypes = {
   handleSubmit: PropTypes.func.isRequired,
-  // fields: PropTypes.object
+  getDate: PropTypes.func,
+  timeSlots: PropTypes.array
 };
 renderTextField.propTypes = {
   label: PropTypes.string.isRequired,
@@ -141,7 +174,20 @@ renderDateField.propTypes = {
     touched: PropTypes.bool.isRequired,
     error: PropTypes.string,
   }).isRequired,
-  custom: PropTypes.string
+  custom: PropTypes.string,
+  getDate: PropTypes.func
+};
+
+renderDropdownList.propTypes = {
+  label: PropTypes.string.isRequired,
+  error: PropTypes.string,
+  input: PropTypes.object.isRequired,
+  meta: PropTypes.shape({
+    touched: PropTypes.bool.isRequired,
+    error: PropTypes.string,
+  }).isRequired,
+  custom: PropTypes.string,
+  children: PropTypes.array
 };
 
 export default BookingReduxForm = reduxForm({

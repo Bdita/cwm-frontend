@@ -12,6 +12,9 @@
   ],
   "rules": {
     "arrow-parens": 0,
+    "arrow-body-style": 0,
+    "prefer-template": 0,
+    "array-callback-return": 0,
     "import/no-unresolved": 0,
     "import/prefer-default-export": 0,
     "import/no-extraneous-dependencies": 0,
