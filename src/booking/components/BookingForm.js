@@ -80,6 +80,20 @@ const renderDropdownList = ({
   />
 );
 
+const conditionalRenderTimeField = (timeSlots) => {
+  if (timeSlots.length !== 0) {
+    return (
+      <Field
+        name="time_slot"
+        component={renderDropdownList}
+        label="Choose time"
+      >
+        {rendertimeSlotItems(timeSlots)}
+      </Field>
+    );
+  }
+};
+
 let BookingReduxForm = (props) => {
   const { handleSubmit, timeSlots } = props;
   return (
@@ -132,13 +146,7 @@ let BookingReduxForm = (props) => {
             label="Select Date"
             getDate={props.getDate}
           />
-          <Field
-            name="time_slot"
-            component={renderDropdownList}
-            label="time slot"
-          >
-            {rendertimeSlotItems(timeSlots)}
-          </Field>
+          {conditionalRenderTimeField(timeSlots)}
           <RaisedButton
             label="Submit"
             primary={true}
