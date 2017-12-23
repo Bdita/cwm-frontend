@@ -56,7 +56,6 @@ export function availableTimeSlots(date) {
 export function getDate(date) {
   return (dispatch) => {
     const newDate = extractDate(date);
-    // console.log(newDate);
     dispatch(getDateRequest(newDate));
     const dateEndPoint = `${config.api.endpoint}/api/dates/${newDate}/`;
     return fetch(dateEndPoint, {

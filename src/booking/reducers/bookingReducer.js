@@ -1,56 +1,34 @@
 import {
   MAKE_BOOKING_SUCCESS, MAKE_BOOKING_REQUEST,
-  MAKE_BOOKING_FAILURE, GET_DATE_REQUEST,
-  GET_DATE_SUCCESS, GET_DATE_FAILURE,
-  GET_TIMESLOTS_SUCCESS } from '../actions/bookingActions';
+  MAKE_BOOKING_FAILURE } from '../actions/bookingActions';
 
 const bookingReducer = (state = {
   isRequesting: false,
+  isSuccess: false,
   details: {},
   error: {},
-  selectedDate: {},
-  availableTimeSlots: {}
 }, action) => {
   switch (action.type) {
     case MAKE_BOOKING_REQUEST:
       return Object.assign({}, state, {
         isRequesting: true,
+        isSuccess: false,
         details: {},
         error: {}
       });
     case MAKE_BOOKING_SUCCESS:
       return Object.assign({}, state, {
         isRequesting: false,
+        isSuccess: true,
         details: action.details,
         error: {}
       });
     case MAKE_BOOKING_FAILURE:
       return Object.assign({}, state, {
         isRequesting: false,
+        isSuccess: true,
         details: {},
         error: action.error
-      });
-    case GET_DATE_REQUEST:
-      return Object.assign({}, state, {
-        isRequesting: true,
-        selectedDate: {},
-        availableTimeSlots: {}
-      });
-    case GET_DATE_SUCCESS:
-      return Object.assign({}, state, {
-        isRequesting: false,
-        selectedDate: action.date,
-        availableTimeSlots: {}
-      });
-    case GET_DATE_FAILURE:
-      return Object.assign({}, state, {
-        isRequesting: false,
-        selectedDate: {},
-        availableTimeSlots: action.error
-      });
-    case GET_TIMESLOTS_SUCCESS:
-      return Object.assign({}, state, {
-        availableTimeSlots: action.timeSlots
       });
     default:
       return state;
