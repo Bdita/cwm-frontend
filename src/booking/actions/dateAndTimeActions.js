@@ -63,7 +63,7 @@ export function getDate(date) {
     })
       .then((response) => {
         if (response.status === 404) {
-          throw Error('404Error');
+          throw Error('404: DateNotFound');
         }
         return response.json();
       })

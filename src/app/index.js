@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Header from '../ui/components/Header';
 import Home from '../home/Home';
 import BookingForm from '../booking/containers/BookingFormContainer';
+import BookingDetail from '../booking/containers/BookingDetailContainer';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import * as colors from 'material-ui/styles/colors';
@@ -15,7 +16,7 @@ const muiTheme = getMuiTheme({
   // spacing: spacing,
   // fontFamily: 'Roboto, sans-serif',
   palette: {
-    primary1Color: colors.white,
+    primary1Color: '#ED5F59',
     // primary2Color: colors.cyan700,
     // primary3Color: grey400,
     // accent1Color: colors.pink300,
@@ -46,6 +47,7 @@ class Index extends Component {
             <Switch>
               <Route exact path="/" component={Home} />
               <Route exact path="/booking" component={BookingForm} />
+              <Route path="/booking/:bookingId" component={BookingDetail} />
             </Switch>
           </div>
         </Router>

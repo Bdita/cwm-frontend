@@ -77,6 +77,7 @@ class Header extends Component {
             marginBottom: '15px',
             position: 'relative',
             zIndex: '0',
+            backgroundColor: 'white'
           }}
           iconStyleLeft={{
             color: '#767676'

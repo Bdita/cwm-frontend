@@ -2,20 +2,56 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import BookingForm from '../components/BookingForm';
+import { withRouter } from 'react-router-dom';
+import Snackbar from 'material-ui/Snackbar';
 import { makeBooking } from '../actions/bookingActions';
 import { getDate } from '../actions/dateAndTimeActions';
+import _ from 'lodash';
+import { convertObjectValuesToArray, errorMessageString } from '../../utils/helpers';
 
 class BookingFormContainer extends Component {
   constructor(props) {
     super(props);
     this.handleFormSubmit = this.handleFormSubmit.bind(this);
+    this.handleBookingSuccess = this.handleBookingSuccess.bind(this);
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if ((this.props.bookingSuccess === false && nextProps.bookingSuccess === true)
+    && (_.isEmpty(this.props.booking) === true && _.isEmpty(nextProps.booking) === false)) {
+      const bookingId = nextProps.booking.id;
+      this.handleBookingSuccess(bookingId);
+    }
   }
 
   handleFormSubmit(formProps) {
     this.props.createBooking(formProps);
   }
 
+  handleBookingSuccess(bookingId) {
+    this.props.history.push(`${bookingId}`);
+  }
+
   render() {
+    const bookingError = this.props.error;
+    const hasError = !_.isEmpty(bookingError);
+    let errorBar = null;
+    if (hasError) {
+      const errorMessages = convertObjectValuesToArray(bookingError);
+      const errorString = errorMessageString(errorMessages);
+      errorBar = (
+        <Snackbar
+          open={true}
+          message={errorString}
+          autoHideDuration={5000}
+          contentStyle={{
+            color: 'white'
+          }}
+          // onRequestClose={this.props.clearGeocodeError}
+        />
+      );
+    }
+
     return (
       <div>
         <BookingForm
@@ -23,6 +59,7 @@ class BookingFormContainer extends Component {
           getDate={this.props.getDateAndTimeSlots}
           timeSlots={this.props.availableTimeSlots}
         />
+        {errorBar}
       </div>
     );
   }
@@ -30,14 +67,20 @@ class BookingFormContainer extends Component {
 
 BookingFormContainer.propTypes = {
   createBooking: PropTypes.func,
+  bookingSuccess: PropTypes.bool,
   getDateAndTimeSlots: PropTypes.func,
-  availableTimeSlots: PropTypes.array
+  availableTimeSlots: PropTypes.array,
+  history: PropTypes.object,
+  booking: PropTypes.object,
+  error: PropTypes.object
 };
 
 function mapStateToProps(state) {
   const newState = {
     booking: state.booking.details,
     selectedDate: state.dateAndTime.selectedDate,
+    bookingSuccess: state.booking.isSuccess,
+    error: state.booking.error,
     availableTimeSlots: []
   };
   if (state.dateAndTime.availableTimeSlots !== undefined && state.dateAndTime.availableTimeSlots !== null) {
@@ -53,4 +96,4 @@ const mapDispatchToProps = dispatch => ({
   getDateAndTimeSlots: (date) => dispatch(getDate(date))
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(BookingFormContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(BookingFormContainer));

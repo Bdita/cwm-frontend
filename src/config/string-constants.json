@@ -9,5 +9,7 @@
     "about": "A Full Stack Developer from Sydney, Australia",
     "test": "m"
   },
-  "book": "Book"
+  "book": "Book",
+  "emailExistError": "booking with this email already exists.",
+  "phoneExistError": "booking with this phone already exists."
 }

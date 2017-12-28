@@ -1,6 +1,7 @@
 import {
   MAKE_BOOKING_SUCCESS, MAKE_BOOKING_REQUEST,
-  MAKE_BOOKING_FAILURE } from '../actions/bookingActions';
+  MAKE_BOOKING_FAILURE, GET_BOOKING_REQUEST,
+  GET_BOOKING_FAILURE, GET_BOOKING_SUCCESS } from '../actions/bookingActions';
 
 const bookingReducer = (state = {
   isRequesting: false,
@@ -24,6 +25,27 @@ const bookingReducer = (state = {
         error: {}
       });
     case MAKE_BOOKING_FAILURE:
+      return Object.assign({}, state, {
+        isRequesting: false,
+        isSuccess: false,
+        details: {},
+        error: action.error
+      });
+    case GET_BOOKING_REQUEST:
+      return Object.assign({}, state, {
+        isRequesting: true,
+        isSuccess: false,
+        details: {},
+        error: {}
+      });
+    case GET_BOOKING_SUCCESS:
+      return Object.assign({}, state, {
+        isRequesting: false,
+        isSuccess: false,
+        details: action.details,
+        error: {}
+      });
+    case GET_BOOKING_FAILURE:
       return Object.assign({}, state, {
         isRequesting: false,
         isSuccess: false,
