@@ -53,16 +53,18 @@ export function makeBooking(formProps) {
     })
       .then((response) => {
         if (response.status === 400) {
-          dispatch(makeBookingFailure(response));
-          throw Error('404Error');
+          const error = response.json();
+          error.then((message) => {
+            dispatch(makeBookingFailure(message));
+          });
+        } else if (response.status === 200) {
+          dispatch(makeBookingSuccess(response.json));
+        } else {
+          throw Error('backendError');
         }
-        return response.json();
-      })
-      .then((json) => {
-        dispatch(makeBookingSuccess(json));
       })
       .catch((error) => {
-        dispatch(makeBookingFailure(error.message));
+        dispatch(makeBookingFailure(error));
       });
   };
 }

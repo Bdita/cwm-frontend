@@ -26,7 +26,7 @@ const bookingReducer = (state = {
     case MAKE_BOOKING_FAILURE:
       return Object.assign({}, state, {
         isRequesting: false,
-        isSuccess: true,
+        isSuccess: false,
         details: {},
         error: action.error
       });
