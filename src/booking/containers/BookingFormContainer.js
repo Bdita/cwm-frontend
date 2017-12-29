@@ -14,6 +14,7 @@ class BookingFormContainer extends Component {
     super(props);
     this.handleFormSubmit = this.handleFormSubmit.bind(this);
     this.handleBookingSuccess = this.handleBookingSuccess.bind(this);
+    this.disableWeekends = this.disableWeekends.bind(this);
   }
 
   componentWillReceiveProps(nextProps) {
@@ -32,6 +33,10 @@ class BookingFormContainer extends Component {
     this.props.history.push(`${bookingId}`);
   }
 
+  disableWeekends(date) {
+    return date.getDay() === 0 || date.getDay() === 6;
+  }
+
   render() {
     const bookingError = this.props.error;
     const hasError = !_.isEmpty(bookingError);
@@ -47,6 +52,12 @@ class BookingFormContainer extends Component {
           contentStyle={{
             color: 'white'
           }}
+          bodyStyle={{
+            height: 'auto',
+            lineHeight: '28px',
+            padding: 24,
+            whiteSpace: 'pre-line'
+          }}
           // onRequestClose={this.props.clearGeocodeError}
         />
       );
@@ -58,6 +69,7 @@ class BookingFormContainer extends Component {
           onSubmit={this.handleFormSubmit}
           getDate={this.props.getDateAndTimeSlots}
           timeSlots={this.props.availableTimeSlots}
+          disableWeekends={this.disableWeekends}
         />
         {errorBar}
       </div>

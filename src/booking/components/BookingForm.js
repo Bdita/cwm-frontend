@@ -49,12 +49,14 @@ const renderDateField = ({
   label,
   meta: { touched, error },
   getDate,
+  disableWeekends,
   custom,
 }) => (
   <DatePicker
     hintText={label}
     floatingLabelText={label}
     errorText={touched && error}
+    shouldDisableDate={disableWeekends}
     onChange={(event, date) => {
       input.onChange(date);
       getDate(date);
@@ -145,6 +147,7 @@ let BookingReduxForm = (props) => {
             component={renderDateField}
             label="Select Date"
             getDate={props.getDate}
+            disableWeekends={props.disableWeekends}
           />
           {conditionalRenderTimeField(timeSlots)}
           <RaisedButton
@@ -161,7 +164,8 @@ let BookingReduxForm = (props) => {
 BookingReduxForm.propTypes = {
   handleSubmit: PropTypes.func.isRequired,
   getDate: PropTypes.func,
-  timeSlots: PropTypes.array
+  timeSlots: PropTypes.array,
+  disableWeekends: PropTypes.func
 };
 renderTextField.propTypes = {
   label: PropTypes.string.isRequired,
@@ -183,7 +187,8 @@ renderDateField.propTypes = {
     error: PropTypes.string,
   }).isRequired,
   custom: PropTypes.string,
-  getDate: PropTypes.func
+  getDate: PropTypes.func,
+  disableWeekends: PropTypes.func
 };
 
 renderDropdownList.propTypes = {
