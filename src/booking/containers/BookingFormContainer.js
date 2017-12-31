@@ -12,6 +12,19 @@ import { convertObjectValuesToArray, errorMessageString } from '../../utils/help
 class BookingFormContainer extends Component {
   constructor(props) {
     super(props);
+    const minDate = new Date();
+    const maxDate = new Date();
+    minDate.setDate(5);
+    minDate.setMonth(11);
+    minDate.setYear(2017);
+    maxDate.setDate(10);
+    maxDate.setMonth(11);
+    maxDate.setYear(2017);
+
+    this.state = {
+      minDate: minDate,
+      maxDate: maxDate,
+    };
     this.handleFormSubmit = this.handleFormSubmit.bind(this);
     this.handleBookingSuccess = this.handleBookingSuccess.bind(this);
     this.disableWeekends = this.disableWeekends.bind(this);
@@ -62,12 +75,15 @@ class BookingFormContainer extends Component {
         />
       );
     }
+    console.log(this.state.minDate);
 
     return (
       <div>
         <BookingForm
           onSubmit={this.handleFormSubmit}
           getDate={this.props.getDateAndTimeSlots}
+          minDate={this.state.minDate}
+          maxDate={this.state.maxDate}
           timeSlots={this.props.availableTimeSlots}
           disableWeekends={this.disableWeekends}
         />

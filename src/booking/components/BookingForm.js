@@ -13,7 +13,7 @@ const validate = values => {
     }
   });
   if (values.email && !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
-    errors.email = 'Invalid email address';
+    errors.email = 'Invalid Email Address';
   }
   if (values.phone && !/^(?:\+?61|0)4 ?(?:(?:[01] ?[0-9]|2 ?[0-57-9]|3 ?[1-9]|4 ?[7-9]|5 ?[018]) ?[0-9]|3 ?0 ?[0-5])(?: ?[0-9]){5}$/i.test(values.phone)) {
     errors.phone = 'Invalid Mobile Number';
@@ -49,6 +49,8 @@ const renderDateField = ({
   label,
   meta: { touched, error },
   getDate,
+  minDate,
+  maxDate,
   disableWeekends,
   custom,
 }) => (
@@ -57,6 +59,8 @@ const renderDateField = ({
     floatingLabelText={label}
     errorText={touched && error}
     shouldDisableDate={disableWeekends}
+    minDate={minDate}
+    maxDate={maxDate}
     onChange={(event, date) => {
       input.onChange(date);
       getDate(date);
@@ -147,6 +151,8 @@ let BookingReduxForm = (props) => {
             component={renderDateField}
             label="Select Date"
             getDate={props.getDate}
+            minDate={props.minDate}
+            maxDate={props.maxDate}
             disableWeekends={props.disableWeekends}
           />
           {conditionalRenderTimeField(timeSlots)}
@@ -164,6 +170,8 @@ let BookingReduxForm = (props) => {
 BookingReduxForm.propTypes = {
   handleSubmit: PropTypes.func.isRequired,
   getDate: PropTypes.func,
+  minDate: PropTypes.date,
+  maxDate: PropTypes.date,
   timeSlots: PropTypes.array,
   disableWeekends: PropTypes.func
 };
@@ -188,6 +196,8 @@ renderDateField.propTypes = {
   }).isRequired,
   custom: PropTypes.string,
   getDate: PropTypes.func,
+  minDate: PropTypes.object,
+  maxDate: PropTypes.object,
   disableWeekends: PropTypes.func
 };
 
