@@ -75,7 +75,6 @@ class BookingFormContainer extends Component {
         />
       );
     }
-    console.log(this.state.minDate);
 
     return (
       <div>

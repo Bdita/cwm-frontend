@@ -2,14 +2,26 @@
   "title": "Coffee With Me",
   "introduction": {
     "slogan": "Let's connect.",
-    "description": " bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla"
+    "description1": " bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla"
   },
   "detail": {
     "name": "Bandita Sharma",
     "about": "A Full Stack Developer from Sydney, Australia",
+    "more": "What am I upto in 2018?",
+    "goal1": "Meet as many people as I can from different walks of life",
+    "goal2": "Level up in JS game",
+    "goal3": "Landscape Photography (Every year I try to learn something new)",
     "test": "m"
   },
   "book": "Book",
   "emailExistError": "booking with this email already exists.",
-  "phoneExistError": "booking with this phone already exists."
+  "phoneExistError": "booking with this phone already exists.",
+  "bookingInfo": {
+    "bookingSuccess": "Thank you for sending your booking request to have coffee with me.",
+    "bookingDetail": "Here is your booking detail.",
+    "date": "Date: ",
+    "time": "Time: ",
+    "location": "Your preferred Location: ",
+    "bookingConfirmation": "You will receive an email confirmation shortly in the given email address."
+  }
 }

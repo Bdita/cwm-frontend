@@ -81,7 +81,48 @@ class PersonalDetailDrawer extends Component {
           style={style.large}
           zDepth={3}
           circle={true}
-        />
+        >
+          <div style={{
+            fontSize: '13px',
+            marginTop: '30%',
+            fontFamily: 'Roboto Mono',
+            color: 'white'
+            }}
+          >
+            <div style={{
+              textDecoration: 'underline',
+              fontWeight: '700',
+              fontFamily: 'Roboto Mono',
+            }}
+            >
+              {constants.detail.more}
+            </div>
+            <div style={{
+              marginTop: '2%',
+              fontWeight: '700',
+              fontStyle: 'italic'
+            }}
+            >
+              {constants.detail.goal1}
+            </div>
+            <div style={{
+              marginTop: '2%',
+              fontWeight: '700',
+              fontStyle: 'italic'
+            }}
+            >
+              {constants.detail.goal2}
+            </div>
+            <div style={{
+              marginTop: '2%',
+              fontWeight: '700',
+              fontStyle: 'italic'
+            }}
+            >
+              {constants.detail.goal3}
+            </div>
+          </div>
+        </Paper>
       </div>
     );
   }

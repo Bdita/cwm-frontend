@@ -43,12 +43,15 @@ class Message extends Component {
         }}
         >
           <div style={{
-            marginTop: '20%',
+            // marginTop: '20%',
             width: '100%',
+            fontSize: '20px',
+            fontStyle: 'italic',
+            textAlign: 'center'
             // border: '1px solid red',
           }}
           >
-            {constants.introduction.description}
+            {constants.introduction.slogan}
           </div>
           <div style={{
             marginTop: '75%',
