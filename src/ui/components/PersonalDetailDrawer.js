@@ -65,7 +65,7 @@ class PersonalDetailDrawer extends Component {
               fontFamily: 'Roboto Mono',
             }}
             >
-              {constants.detail.name}
+              {constants.detail.title1}
             </div>
             <div style={{
               marginTop: '2%',
@@ -95,7 +95,7 @@ class PersonalDetailDrawer extends Component {
               fontFamily: 'Roboto Mono',
             }}
             >
-              {constants.detail.more}
+              {constants.detail.title2}
             </div>
             <div style={{
               marginTop: '2%',

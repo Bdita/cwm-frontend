@@ -38,6 +38,7 @@ const renderTextField = ({
   <TextField
     hintText={label}
     floatingLabelText={label}
+    fullWidth={true}
     errorText={touched && error}
     {...input}
     {...custom}
@@ -57,6 +58,7 @@ const renderDateField = ({
   <DatePicker
     hintText={label}
     floatingLabelText={label}
+    fullWidth={true}
     errorText={touched && error}
     shouldDisableDate={disableWeekends}
     minDate={minDate}
@@ -78,6 +80,7 @@ const renderDropdownList = ({
 }) => (
   <SelectField
     floatingLabelText={label}
+    fullWidth={true}
     errorText={touched && error}
     {...input}
     onChange={(event, index, value) => input.onChange(value)}
@@ -107,6 +110,7 @@ let BookingReduxForm = (props) => {
       width: '40%',
       marginLeft: '30%',
       marginRight: '30%',
+      marginBottom: '5%',
       // border: '1px solid red',
       display: 'flex',
       justifyContent: 'center',
@@ -114,7 +118,7 @@ let BookingReduxForm = (props) => {
     }}
     >
       <div style={{
-        width: '60%',
+        width: '70%',
         // border: '1px solid red',
       }}
       >
@@ -156,11 +160,21 @@ let BookingReduxForm = (props) => {
             disableWeekends={props.disableWeekends}
           />
           {conditionalRenderTimeField(timeSlots)}
-          <RaisedButton
-            label="Submit"
-            primary={true}
-            type="submit"
-          />
+          <div style={{
+            marginLeft: '40%',
+            marginTop: '7%'
+          }}
+          >
+            <RaisedButton
+              label="Submit"
+              primary={true}
+              type="submit"
+              labelStyle={{
+                color: 'white',
+                fontWeight: 'bold'
+              }}
+            />
+          </div>
         </form>
       </div>
     </div>
@@ -170,8 +184,8 @@ let BookingReduxForm = (props) => {
 BookingReduxForm.propTypes = {
   handleSubmit: PropTypes.func.isRequired,
   getDate: PropTypes.func,
-  minDate: PropTypes.date,
-  maxDate: PropTypes.date,
+  minDate: PropTypes.object,
+  maxDate: PropTypes.object,
   timeSlots: PropTypes.array,
   disableWeekends: PropTypes.func
 };

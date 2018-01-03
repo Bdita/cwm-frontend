@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import Header from '../ui/components/Header';
+import Header from '../ui/containers/HeaderContainer';
+import Footer from '../ui/containers/FooterContainer';
 import Home from '../home/Home';
 import BookingForm from '../booking/containers/BookingFormContainer';
 import BookingDetail from '../booking/containers/BookingDetailContainer';
@@ -49,6 +50,7 @@ class Index extends Component {
               <Route exact path="/booking" component={BookingForm} />
               <Route path="/booking/:bookingId" component={BookingDetail} />
             </Switch>
+            <Footer />
           </div>
         </Router>
       </MuiThemeProvider>

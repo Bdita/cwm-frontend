@@ -34,8 +34,24 @@ class BookingDetail extends Component {
               // border: '1px solid red',
             }}
             >
-              <p> {constants.bookingInfo.date}: {this.props.booking.date} </p>
-              <p> {constants.bookingInfo.time}: {this.props.booking.time_slot} </p>
+              <p> {constants.bookingInfo.date} {this.props.booking.date} </p>
+              <p> {constants.bookingInfo.time} {this.props.booking.time_slot} </p>
+            </div>
+            <div style={{
+              width: '100%',
+              marginTop: '5%',
+              // border: '1px solid red',
+            }}
+            >
+              <p> {constants.bookingInfo.bookingConfirmation} </p>
+            </div>
+            <div style={{
+              width: '100%',
+              marginTop: '5%',
+              // border: '1px solid red',
+            }}
+            >
+              <p> {constants.bookingInfo.farewellMessage} </p>
             </div>
           </div>
         </div>

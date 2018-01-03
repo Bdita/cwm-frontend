@@ -38,9 +38,13 @@ module.exports = {
         loader: 'style-loader!css-loader?modules'
       },
       {
-        test: /\.(png|svg|jpg|gif)$/,
+        test: /\.(png|jpg|gif)$/,
         exclude: /(node_modules)/,
         loader: 'file-loader'
+      },
+      {
+        test: /\.svg$/,
+        loader: 'raw-loader'
       }
     ]
   },

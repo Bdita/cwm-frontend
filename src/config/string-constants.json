@@ -27,6 +27,7 @@
     "date": "Date: ",
     "time": "Time: ",
     "location": "Your preferred Location: ",
-    "bookingConfirmation": "You will receive an email confirmation shortly in the given email address."
+    "bookingConfirmation": "You will receive an email in the given email address once the booking has been confirmed.",
+    "farewellMessage": "Looking forward to see you."
   }
 }

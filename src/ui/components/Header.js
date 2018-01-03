@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import PersonalDetailDrawer from './PersonalDetailDrawer';
+import PersonalDetailDrawer from '../containers/PersonalDetailDrawerContainer';
 import AppBar from 'material-ui/AppBar';
 import Drawer from 'material-ui/Drawer';
 import constants from '../../config/string-constants.json';
@@ -22,6 +23,16 @@ class Header extends Component {
   }
 
   render() {
+    const screen = this.props.screen;
+
+    let sideDrawerWidth = '23%';
+    let sideDrawerMarginTop = '6%';
+
+    if (screen.width <= screen.breakpoints.large) {
+      sideDrawerWidth = '32%';
+      sideDrawerMarginTop = '8%';
+    }
+
     return (
       <div>
         <AppBar
@@ -43,7 +54,7 @@ class Header extends Component {
               <FaceIcon />
               <ArrowDownIcon />
             </IconButton>
-            }
+          }
           iconElementRight={
             <div style={{
               marginTop: 0
@@ -77,7 +88,7 @@ class Header extends Component {
             marginBottom: '15px',
             position: 'relative',
             zIndex: '0',
-            backgroundColor: 'white'
+            backgroundColor: 'white',
           }}
           iconStyleLeft={{
             color: '#767676'
@@ -85,9 +96,10 @@ class Header extends Component {
         />
         <Drawer
           open={this.state.open}
-          width="25%"
+          width={sideDrawerWidth}
+          height={20}
           containerStyle={{
-            marginTop: '6%',
+            marginTop: sideDrawerMarginTop,
             boxShadow: 'none'
           }}
         >
@@ -97,4 +109,9 @@ class Header extends Component {
     );
   }
 }
+
+Header.propTypes = {
+  screen: PropTypes.object
+};
+
 export default Header;
