@@ -17,7 +17,7 @@ const muiTheme = getMuiTheme({
   // fontFamily: 'Roboto, sans-serif',
   palette: {
     primary1Color: '#ED5F59',
-    // primary2Color: colors.cyan700,
+    primary2Color: colors.cyan700,
     // primary3Color: grey400,
     // accent1Color: colors.pink300,
     // accent2Color: colors.grey100,

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import constants from '../config/string-constants';
-import LogoImage from '../static/icons/coffee.png';
+import constants from '../../config/string-constants';
+import LogoImage from '../../static/icons/coffee.png';
 
 class Logo extends Component {
   render() {
@@ -11,6 +11,7 @@ class Logo extends Component {
         style={{
           height: '60px',
           width: '60px',
+          color: 'white'
         }}
       />
     );

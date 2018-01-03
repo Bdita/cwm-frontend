@@ -1,13 +1,18 @@
 {
   "title": "Coffee With Me",
   "introduction": {
-    "slogan": "Let's connect.",
-    "description1": " bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla"
+    "slogan1": "When Digital Connections Meet For Real!",
+    "description1": "I have set myself up for a challenge this year (2018). I want to break out of my comfort zone and meet as many people as I can: LinkedIn connections to start with.",
+    "description2": "I also believe everyone has a story to tell. What is your story? I would love to hear yours and share mine too.",
+    "description3": "If you are not connected with me in LinkedIn, you can send a request to connect but do leave me a message that you found out about me through this paltform.",
+    "description4": "Let's connect for real!",
+    "description5": "Still not convinced?!",
+    "description6": "Let's connect over a free coffee!"
   },
   "detail": {
-    "name": "Bandita Sharma",
+    "title1": "Bandita Sharma",
     "about": "A Full Stack Developer from Sydney, Australia",
-    "more": "What am I upto in 2018?",
+    "title2": "What am I upto in 2018?",
     "goal1": "Meet as many people as I can from different walks of life",
     "goal2": "Level up in JS game",
     "goal3": "Landscape Photography (Every year I try to learn something new)",
