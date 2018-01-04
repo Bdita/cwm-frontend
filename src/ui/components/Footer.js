@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+// import { Link } from 'react-router-dom';
 import IconTwitter from 'react-devicon/twitter/original';
 import IconLinkedin from 'react-devicon/linkedin/plain-wordmark';
 import IconGithub from 'react-devicon/github/original';
@@ -54,17 +55,23 @@ class Footer extends Component {
           <div
             style={style.extraSmall}
           >
-            {<IconTwitter width={50} />}
+            <a href="https://twitter.com/BanditaSAcharya?lang=en">
+              {<IconTwitter width={50} />}
+            </a>
           </div>
           <div
             style={style.small}
           >
-            {<IconLinkedin width={100} />}
+            <a href="https://www.linkedin.com/in/bandita-sharma-ab54aab2/">
+              {<IconLinkedin width={100} />}
+            </a>
           </div>
           <div
             style={style.extraSmall}
           >
-            {<IconGithub width={50} />}
+            <a href="https://github.com/Bdita">
+              {<IconGithub width={50} />}
+            </a>
           </div>
         </div>
       </div>
