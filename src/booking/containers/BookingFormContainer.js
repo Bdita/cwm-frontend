@@ -14,12 +14,12 @@ class BookingFormContainer extends Component {
     super(props);
     const minDate = new Date();
     const maxDate = new Date();
-    minDate.setDate(5);
-    minDate.setMonth(11);
-    minDate.setYear(2017);
-    maxDate.setDate(10);
-    maxDate.setMonth(11);
-    maxDate.setYear(2017);
+    minDate.setDate(15);
+    minDate.setMonth(12);
+    minDate.setYear(2018);
+    maxDate.setDate(19);
+    maxDate.setMonth(12);
+    maxDate.setYear(2018);
 
     this.state = {
       minDate: minDate,

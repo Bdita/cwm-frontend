@@ -6,7 +6,7 @@ import RaisedButton from 'material-ui/RaisedButton';
 
 const validate = values => {
   const errors = {};
-  const requiredFields = ['name', 'email', 'description', 'phone', 'company_name', 'date', 'time_slot'];
+  const requiredFields = ['name', 'email', 'description', 'phone', 'company_name', 'meetup_location', 'date', 'time_slot'];
   requiredFields.forEach(field => {
     if (!values[field]) {
       errors[field] = 'Required';
@@ -39,6 +39,25 @@ const renderTextField = ({
     hintText={label}
     floatingLabelText={label}
     fullWidth={true}
+    underlineShow={true}
+    errorText={touched && error}
+    {...input}
+    {...custom}
+  />
+);
+
+const renderMultilineTextField = ({
+  input,
+  label,
+  meta: { touched, error },
+  custom
+}) => (
+  <TextField
+    hintText={label}
+    floatingLabelText={label}
+    fullWidth={true}
+    multiLine={true}
+    rows={3}
     errorText={touched && error}
     {...input}
     {...custom}
@@ -83,9 +102,9 @@ const renderDropdownList = ({
     fullWidth={true}
     errorText={touched && error}
     {...input}
+    {...custom}
     onChange={(event, index, value) => input.onChange(value)}
     children={children}
-    {...custom}
   />
 );
 
@@ -135,10 +154,8 @@ let BookingReduxForm = (props) => {
           />
           <Field
             name="description"
-            component={renderTextField}
+            component={renderMultilineTextField}
             label="Tell me lil bit more about you"
-            multiLine={true}
-            rows={3}
           />
           <Field
             name="phone"
@@ -149,6 +166,11 @@ let BookingReduxForm = (props) => {
             name="company_name"
             component={renderTextField}
             label="Company/Business Name"
+          />
+          <Field
+            name="meetup_location"
+            component={renderTextField}
+            label="Preferred Meeting Point"
           />
           <Field
             name="date"
@@ -199,7 +221,16 @@ renderTextField.propTypes = {
   }).isRequired,
   custom: PropTypes.string
 };
-
+renderMultilineTextField.propTypes = {
+  label: PropTypes.string.isRequired,
+  error: PropTypes.string,
+  input: PropTypes.object.isRequired,
+  meta: PropTypes.shape({
+    touched: PropTypes.bool.isRequired,
+    error: PropTypes.string,
+  }).isRequired,
+  custom: PropTypes.string
+};
 renderDateField.propTypes = {
   label: PropTypes.string.isRequired,
   error: PropTypes.string,

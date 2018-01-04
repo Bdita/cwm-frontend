@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-// import { Link } from 'react-router-dom';
 import IconTwitter from 'react-devicon/twitter/original';
 import IconLinkedin from 'react-devicon/linkedin/plain-wordmark';
 import IconGithub from 'react-devicon/github/original';
