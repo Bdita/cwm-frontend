@@ -36,6 +36,7 @@ class BookingDetail extends Component {
             >
               <p> {constants.bookingInfo.date} {this.props.booking.date} </p>
               <p> {constants.bookingInfo.time} {this.props.booking.time_slot} </p>
+              <p> {constants.bookingInfo.location} {this.props.booking.meetup_location} </p>
             </div>
             <div style={{
               width: '100%',

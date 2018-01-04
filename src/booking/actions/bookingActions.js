@@ -63,6 +63,7 @@ export function makeBooking(formProps) {
       description: formProps.description,
       phone: formProps.phone,
       company_name: formProps.company_name,
+      meetup_location: formProps.meetup_location,
       date: newDate,
       time_slot: formProps.time_slot
     };

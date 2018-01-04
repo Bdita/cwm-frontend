@@ -57,7 +57,7 @@ const renderMultilineTextField = ({
     floatingLabelText={label}
     fullWidth={true}
     multiLine={true}
-    rows={3}
+    rows={1}
     errorText={touched && error}
     {...input}
     {...custom}
