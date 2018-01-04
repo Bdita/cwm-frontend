@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import constants from '../../config/string-constants';
-import Paper from 'material-ui/Paper';
 import IconTwitter from 'react-devicon/twitter/original';
+import IconLinkedin from 'react-devicon/linkedin/plain-wordmark';
+import IconGithub from 'react-devicon/github/original';
 
 const style = {
   extraSmall: {
@@ -45,54 +45,29 @@ class Footer extends Component {
       }}
       >
         <div style={{
-          marginTop: '5%',
+          marginTop: '15%',
           width: '65%',
-          border: '1px solid red',
+          // border: '1px solid red',
           display: 'flex',
         }}
         >
-          <Paper
+          <div
             style={style.extraSmall}
-            zDepth={3}
-            circle={true}
           >
-            {<IconTwitter width={25} color="white" />}
-          </Paper>
-          <Paper
+            {<IconTwitter width={50} />}
+          </div>
+          <div
             style={style.small}
-            zDepth={3}
-            circle={true}
           >
-            {constants.detail.test}
-          </Paper>
-          <Paper
+            {<IconLinkedin width={100} />}
+          </div>
+          <div
             style={style.extraSmall}
-            zDepth={3}
-            circle={true}
           >
-            {constants.detail.test}
-          </Paper>
+            {<IconGithub width={50} />}
+          </div>
         </div>
       </div>
-      // <div style={{
-      //   width: '20%',
-      //   marginTop: '1%',
-      //   // border: '1px solid red',
-      //   display: 'flex',
-      //   justifyContent: 'center',
-      //   alignItems: 'center',
-      // }}
-      // >
-      //   <Paper
-      //     style={style.extraSmall}
-      //     zDepth={3}
-      //     circle={true}
-      //   >
-      //     {constants.detail.test}
-      //   </Paper>
-      // </div>
-
-
     );
   }
 }
