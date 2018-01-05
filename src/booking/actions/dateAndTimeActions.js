@@ -2,12 +2,14 @@ import 'whatwg-fetch';
 // in production?
 import config from '../../config/development';
 import { extractDate } from '../../utils/helpers';
+import _ from 'lodash';
 
 // action types
 export const GET_DATE_REQUEST = 'GET_DATE_REQUEST';
 export const GET_DATE_SUCCESS = 'GET_DATE_SUCCESS';
 export const GET_DATE_FAILURE = 'GET_DATE_FAILURE';
 export const GET_TIMESLOTS_SUCCESS = 'GET_TIMESLOTS_SUCCESS';
+export const GET_TIMESLOTS_FAILURE = 'GET_TIMESLOTS_FAILURE';
 export const GET_SELECTEDTIMESLOT_SUCCESS = 'GET_SELECTEDTIMESLOT_SUCCESS';
 export const UPDATE_TIMESLOT_REQUEST = 'UPDATE_TIMESLOT_REQUEST';
 export const UPDATE_TIMESLOT_SUCCESS = 'UPDATE_TIMESLOT_SUCCESS';
@@ -39,6 +41,13 @@ export function getTimeSlotsSuccess(timeSlots) {
   return {
     type: GET_TIMESLOTS_SUCCESS,
     timeSlots: timeSlots
+  };
+}
+
+export function getTimeSlotsFailure(error) {
+  return {
+    type: GET_TIMESLOTS_FAILURE,
+    error: error
   };
 }
 
@@ -95,13 +104,18 @@ export function getDate(date) {
     })
       .then((response) => {
         if (response.status === 404) {
-          throw Error('404: DateNotFound');
+          throw Error('This date is not available for booking.');
         }
         return response.json();
       })
       .then((json) => {
         const selectedDate = json;
         const timeSlots = availableTimeSlots(selectedDate);
+        if (_.isEmpty(timeSlots)) {
+          dispatch(getTimeSlotsFailure('This date is booked out.'));
+        } else {
+          dispatch(getTimeSlotsSuccess(timeSlots));
+        }
         dispatch(getDateSuccess(selectedDate, timeSlots));
       })
       .catch((error) => {

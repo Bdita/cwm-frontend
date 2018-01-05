@@ -49,7 +49,7 @@ class BookingDetail extends Component {
             <div style={{
               width: '100%',
               marginTop: '5%',
-              // border: '1px solid red',
+              // border: '1px solid renderMultilineTextField',
             }}
             >
               <p> {constants.bookingInfo.farewellMessage} </p>

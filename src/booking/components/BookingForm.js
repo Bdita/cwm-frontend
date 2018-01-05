@@ -116,10 +116,8 @@ const renderDropdownList = ({
   />
 );
 
-// connect with store and dispatch an action with selected time slot object
-
 const conditionalRenderTimeField = (timeSlots, props) => {
-  if (timeSlots.length !== 0) {
+  if (timeSlots.length > 0) {
     return (
       <Field
         name="time_slot"
@@ -290,7 +288,7 @@ function mapStateToProps(state) {
 }
 
 const mapDispatchToProps = dispatch => ({
-  getSelectedTime: (time, availableTimeSlots) => dispatch(getSelectedTimeSlot(time, availableTimeSlots)),
+  getSelectedTime: (time, availableTimeSlots) => dispatch(getSelectedTimeSlot(time, availableTimeSlots))
 });
 
 BookingReduxForm = connect(

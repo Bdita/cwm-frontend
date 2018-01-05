@@ -55,11 +55,36 @@ class BookingFormContainer extends Component {
 
   render() {
     const bookingError = this.props.error;
-    const hasError = !_.isEmpty(bookingError);
+    const hasBookingError = !_.isEmpty(bookingError);
+    const timeSlotsError = this.props.timeSlotsError;
+    const hasTimeSlotsError = !_.isEmpty(timeSlotsError);
+
     let errorBar = null;
-    if (hasError) {
+
+    if (hasBookingError) {
       const errorMessages = convertObjectValuesToArray(bookingError);
       const errorString = errorMessageString(errorMessages);
+      errorBar = (
+        <Snackbar
+          open={true}
+          message={errorString}
+          autoHideDuration={5000}
+          contentStyle={{
+            color: 'white'
+          }}
+          bodyStyle={{
+            height: 'auto',
+            lineHeight: '28px',
+            padding: 24,
+            whiteSpace: 'pre-line'
+          }}
+          // onRequestClose={this.props.clearGeocodeError}
+        />
+      );
+    }
+
+    if (hasTimeSlotsError) {
+      const errorString = timeSlotsError;
       errorBar = (
         <Snackbar
           open={true}
@@ -104,7 +129,8 @@ BookingFormContainer.propTypes = {
   updateSelectedTime: PropTypes.func,
   history: PropTypes.object,
   booking: PropTypes.object,
-  error: PropTypes.object
+  error: PropTypes.object,
+  timeSlotsError: PropTypes.object
 };
 
 function mapStateToProps(state) {
@@ -113,6 +139,7 @@ function mapStateToProps(state) {
     selectedDate: state.dateAndTime.selectedDate,
     bookingSuccess: state.booking.isSuccess,
     error: state.booking.error,
+    timeSlotsError: state.dateAndTime.timeSlotsError,
     availableTimeSlots: [],
     selectedTime: state.dateAndTime.selectedTime
   };
