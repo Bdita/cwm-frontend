@@ -47,7 +47,7 @@ class Index extends Component {
             <Header />
             <Switch>
               <Route exact path="/" component={Home} />
-              <Route exact path="/booking" component={BookingForm} />
+              <Route exact path="/booking/" component={BookingForm} />
               <Route path="/booking/:bookingId" component={BookingDetail} />
             </Switch>
             <Footer />

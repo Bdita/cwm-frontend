@@ -1,8 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
 import { TextField, DatePicker, SelectField, MenuItem } from 'material-ui';
 import RaisedButton from 'material-ui/RaisedButton';
+import { getSelectedTimeSlot } from '../actions/dateAndTimeActions';
 
 const validate = values => {
   const errors = {};
@@ -95,7 +97,9 @@ const renderDropdownList = ({
   label,
   meta: { touched, error },
   children,
-  custom
+  custom,
+  getSelectedTime,
+  availableTimeSlots
 }) => (
   <SelectField
     floatingLabelText={label}
@@ -103,18 +107,26 @@ const renderDropdownList = ({
     errorText={touched && error}
     {...input}
     {...custom}
-    onChange={(event, index, value) => input.onChange(value)}
+    onChange={(event, index, value) => {
+      input.onChange(value);
+      getSelectedTime(value, availableTimeSlots);
+      }
+    }
     children={children}
   />
 );
 
-const conditionalRenderTimeField = (timeSlots) => {
+// connect with store and dispatch an action with selected time slot object
+
+const conditionalRenderTimeField = (timeSlots, props) => {
   if (timeSlots.length !== 0) {
     return (
       <Field
         name="time_slot"
         component={renderDropdownList}
         label="Choose time"
+        getSelectedTime={props.getSelectedTime}
+        availableTimeSlots={props.availableTimeSlots}
       >
         {rendertimeSlotItems(timeSlots)}
       </Field>
@@ -181,7 +193,7 @@ let BookingReduxForm = (props) => {
             maxDate={props.maxDate}
             disableWeekends={props.disableWeekends}
           />
-          {conditionalRenderTimeField(timeSlots)}
+          {conditionalRenderTimeField(timeSlots, props)}
           <div style={{
             marginLeft: '40%',
             marginTop: '7%'
@@ -209,7 +221,7 @@ BookingReduxForm.propTypes = {
   minDate: PropTypes.object,
   maxDate: PropTypes.object,
   timeSlots: PropTypes.array,
-  disableWeekends: PropTypes.func
+  disableWeekends: PropTypes.func,
 };
 renderTextField.propTypes = {
   label: PropTypes.string.isRequired,
@@ -255,8 +267,36 @@ renderDropdownList.propTypes = {
     error: PropTypes.string,
   }).isRequired,
   custom: PropTypes.string,
-  children: PropTypes.array
+  children: PropTypes.array,
+  getSelectedTime: PropTypes.func,
+  availableTimeSlots: PropTypes.array
 };
+
+conditionalRenderTimeField.propTypes = {
+  getSelectedTime: PropTypes.func,
+  availableTimeSlots: PropTypes.array
+};
+
+function mapStateToProps(state) {
+  const newState = {
+    availableTimeSlots: [],
+  };
+  if (state.dateAndTime.availableTimeSlots !== undefined && state.dateAndTime.availableTimeSlots !== null) {
+    Object.keys(state.dateAndTime.availableTimeSlots).forEach((key) => {
+      newState.availableTimeSlots.push(state.dateAndTime.availableTimeSlots[key]);
+    });
+  }
+  return newState;
+}
+
+const mapDispatchToProps = dispatch => ({
+  getSelectedTime: (time, availableTimeSlots) => dispatch(getSelectedTimeSlot(time, availableTimeSlots)),
+});
+
+BookingReduxForm = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(BookingReduxForm);
 
 export default BookingReduxForm = reduxForm({
   form: 'bookingReduxForm',

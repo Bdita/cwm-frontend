@@ -5,7 +5,7 @@ import BookingForm from '../components/BookingForm';
 import { withRouter } from 'react-router-dom';
 import Snackbar from 'material-ui/Snackbar';
 import { makeBooking } from '../actions/bookingActions';
-import { getDate } from '../actions/dateAndTimeActions';
+import { getDate, updateTimeSlot } from '../actions/dateAndTimeActions';
 import _ from 'lodash';
 import { convertObjectValuesToArray, errorMessageString } from '../../utils/helpers';
 
@@ -34,7 +34,10 @@ class BookingFormContainer extends Component {
     if ((this.props.bookingSuccess === false && nextProps.bookingSuccess === true)
     && (_.isEmpty(this.props.booking) === true && _.isEmpty(nextProps.booking) === false)) {
       const bookingId = nextProps.booking.id;
+      const time = this.props.selectedTime;
       this.handleBookingSuccess(bookingId);
+      this.props.updateSelectedTime(time);
+      // dispatch action to update time_slot status from available to on_process
     }
   }
 
@@ -97,6 +100,8 @@ BookingFormContainer.propTypes = {
   bookingSuccess: PropTypes.bool,
   getDateAndTimeSlots: PropTypes.func,
   availableTimeSlots: PropTypes.array,
+  selectedTime: PropTypes.object,
+  updateSelectedTime: PropTypes.func,
   history: PropTypes.object,
   booking: PropTypes.object,
   error: PropTypes.object
@@ -108,7 +113,8 @@ function mapStateToProps(state) {
     selectedDate: state.dateAndTime.selectedDate,
     bookingSuccess: state.booking.isSuccess,
     error: state.booking.error,
-    availableTimeSlots: []
+    availableTimeSlots: [],
+    selectedTime: state.dateAndTime.selectedTime
   };
   if (state.dateAndTime.availableTimeSlots !== undefined && state.dateAndTime.availableTimeSlots !== null) {
     Object.keys(state.dateAndTime.availableTimeSlots).forEach((key) => {
@@ -120,7 +126,8 @@ function mapStateToProps(state) {
 
 const mapDispatchToProps = dispatch => ({
   createBooking: (formProps) => dispatch(makeBooking(formProps)),
-  getDateAndTimeSlots: (date) => dispatch(getDate(date))
+  getDateAndTimeSlots: (date) => dispatch(getDate(date)),
+  updateSelectedTime: (time) => dispatch(updateTimeSlot(time))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(withRouter(BookingFormContainer));

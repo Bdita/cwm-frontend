@@ -1,12 +1,13 @@
 import {
   GET_DATE_REQUEST, GET_DATE_SUCCESS,
-  GET_DATE_FAILURE } from '../actions/dateAndTimeActions';
+  GET_DATE_FAILURE, GET_SELECTEDTIMESLOT_SUCCESS } from '../actions/dateAndTimeActions';
 
 const dateAndTimeReducer = (state = {
   isRequesting: false,
   selectedDate: {},
   error: {},
-  availableTimeSlots: {}
+  availableTimeSlots: {},
+  selectedTime: {}
 }, action) => {
   switch (action.type) {
     case GET_DATE_REQUEST:
@@ -29,6 +30,11 @@ const dateAndTimeReducer = (state = {
         selectedDate: {},
         error: action.error,
         availableTimeSlots: {}
+      });
+    case GET_SELECTEDTIMESLOT_SUCCESS:
+      return Object.assign({}, state, {
+        isRequesting: false,
+        selectedTime: action.time
       });
     default:
       return state;
