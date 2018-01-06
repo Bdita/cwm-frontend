@@ -1,5 +1,4 @@
 import 'whatwg-fetch';
-// in production?
 import config from '../../config/development';
 import { extractDate } from '../../utils/helpers';
 import _ from 'lodash';

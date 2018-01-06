@@ -14,10 +14,10 @@ class BookingFormContainer extends Component {
     super(props);
     const minDate = new Date();
     const maxDate = new Date();
-    minDate.setDate(15);
+    minDate.setDate(8);
     minDate.setMonth(12);
     minDate.setYear(2018);
-    maxDate.setDate(19);
+    maxDate.setDate(12);
     maxDate.setMonth(12);
     maxDate.setYear(2018);
 
@@ -130,7 +130,7 @@ BookingFormContainer.propTypes = {
   history: PropTypes.object,
   booking: PropTypes.object,
   error: PropTypes.object,
-  timeSlotsError: PropTypes.object
+  timeSlotsError: PropTypes.string
 };
 
 function mapStateToProps(state) {

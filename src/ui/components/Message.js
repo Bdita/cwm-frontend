@@ -26,7 +26,17 @@ class Message extends Component {
         }}
         >
           <div style={{
+            fontSize: '14px',
+            fontStyle: 'italic',
+            color: '#939393'
+          }}
+          >
+            {constants.introduction.betaVersion}
+            {constants.introduction.freeToTest}
+          </div>
+          <div style={{
             width: '100%',
+            marginTop: '5%',
             fontSize: '20px',
             fontWeight: 'bold',
             fontStyle: 'italic',
