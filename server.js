@@ -4,7 +4,11 @@ const express = require('express');
 const app = express();
 
 // Since the root/src dir contains our index.html
-app.use(express.static(path.join(__dirname, '/build/')));
+app.use(express.static(path.join(__dirname, 'build')));
+
+app.get('/*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'build', 'index.html'));
+});
 
 app.use((req, res, next) => {
   res.header('Access-Control-Allow-Origin', '*');
