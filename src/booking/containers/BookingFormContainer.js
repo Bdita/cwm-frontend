@@ -46,7 +46,7 @@ class BookingFormContainer extends Component {
   }
 
   handleBookingSuccess(bookingId) {
-    this.props.history.push(`booking/${bookingId}`);
+    this.props.history.push(`/booking/${bookingId}`);
   }
 
   disableWeekends(date) {
