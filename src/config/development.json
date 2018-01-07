@@ -1,6 +1,6 @@
 {
   "debug": true,
   "api": {
-    "endpoint": "https://cwmbackend.herokuapp.com"
+    "endpoint": "https://cwmbackend.herokuapp.com/"
   }
 }
